@@ -65,7 +65,8 @@
             android:id="@+id/rb1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/_1" />
+            android:text="@string/_1"
+            android:checked="true"/>
 
         <RadioButton
             android:id="@+id/rb2"
@@ -99,16 +100,18 @@
 
         <Button
             android:id="@+id/btnInsert"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/insert" />
+            android:text="@string/insert"
+            android:layout_margin="10dp"/>
 
         <Button
             android:id="@+id/btnShow"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/show_list" />
+            android:text="@string/show_list"
+            android:layout_margin="10dp"/>
     </LinearLayout>
 </LinearLayout>

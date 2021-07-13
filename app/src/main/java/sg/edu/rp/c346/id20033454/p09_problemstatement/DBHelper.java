@@ -14,7 +14,7 @@ public class DBHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "ndpsongs.db";
     private static final int DATABASE_VERSION = 2;
     private static final String TABLE_SONG = "song";
-    private static final String COLUMN_ID = "_id";
+    private static final String COLUMN_ID = "id";
     private static final String COLUMN_TITLE = "title";
     private static final String COLUMN_SINGERS = "singers";
     private static final String COLUMN_YEAR = "year";
@@ -101,7 +101,7 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
 
-    public int updateSong(Song data){
+    public int updateSong(Song data, int id){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(COLUMN_TITLE, data.getTitle());
@@ -109,15 +109,16 @@ public class DBHelper extends SQLiteOpenHelper {
         values.put(COLUMN_YEAR, data.getYear());
         values.put(COLUMN_STARS, data.getStars());
         String condition = COLUMN_ID + "= ?";
-        String[] args = {String.valueOf(data.getId())};
+        String[] args = {String.valueOf(id+1)};
         int result = db.update(TABLE_SONG, values, condition, args);
         db.close();
         return result;
     }
+
     public int deleteSong(int id){
         SQLiteDatabase db = this.getWritableDatabase();
         String condition = COLUMN_ID + "= ?";
-        String[] args = {String.valueOf(id)};
+        String[] args = {String.valueOf(id+1)};
         int result = db.delete(TABLE_SONG, condition, args);
         db.close();
         return result;

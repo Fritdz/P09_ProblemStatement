@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -43,5 +44,25 @@ public class ShowList extends AppCompatActivity {
                 aa.notifyDataSetChanged();
             }
         });
+
+        lvSongs.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent i = new Intent(ShowList.this, ModifySong.class);
+                i.putExtra("id", position);
+                startActivity(i);
+            }
+        });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        DBHelper dbh = new DBHelper(ShowList.this);
+
+        al = new ArrayList<Song>();
+        al.addAll(dbh.getAllSongs());
+        aa= new ArrayAdapter<Song>(this, android.R.layout.simple_list_item_1,al);
+        lvSongs.setAdapter(aa);
     }
 }
